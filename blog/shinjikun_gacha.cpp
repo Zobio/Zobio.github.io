@@ -26,6 +26,6 @@ int main() {
 			ans += pow(prob, j) * pow(1 - prob, i - j) * nCr((double)i, (double)j);
 			//N回当たる確率 = 当たる確率 * 当たらない確率 * 組み合わせの数
 		}
-		cout << setprecision(10) << fixed <<  i << "連であたる確率: " << ans * 100 << "%" << endl;
+		cout << setprecision(14) << fixed <<  i << "連であたる確率: " << ans * 100 << "%" << endl;
 	}
 }
