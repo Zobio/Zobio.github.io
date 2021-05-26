@@ -1,263 +1,87 @@
 <!DOCTYPE html>
 
-<html lang="ja">
+<html>
 
-	<head>
-		<meta charset="UTF-8">
-		<title>Zobio's blog</title>
-		<link rel="icon" href="test.ico">
+<head>
+	<meta charset="UTF-8">
+	<title>Zobio's blog</title>
+	<link rel="icon" href="test.ico">
 
-		<style>
-			body {
-				background-color: rgb(0, 0, 0);
-			}
-			.picture {
-				text-align :center;
-				color: rgb(255, 255, 255);
-				margin: 8px;
-			}
+	<style>
+		body {
+			background-color: rgb(0, 0, 0);
+		}
 
-			.base {
-				text-align :center;
-				color: rgb(255, 255, 255);
-			}
-			.enter {
-				text-align :center;
-				color: white;
-				font-weight: bold;
-				border: solid 1px #fff;
-				width: 100px;
-				height: 30px;
-				margin: auto;
-			}
-			.link {
-				text-align :center;
-				margin: 2px;
-			}
-			.archive {
-				color: white;
-			}
-			/*ここからハンバーガーバーのCSS*/
-			nav {
- 				display: block;
-				position: fixed;
-				top: 0;
-				left: -300px;
-				bottom: 0;
-				width: 300px;
-				background: #ffffff;
-				overflow-x: hidden;
-				overflow-y: auto;
-				-webkit-overflow-scrolling: touch;
-				transition: all .5s;
-				z-index: 3;
-				opacity: 0;
-			}
-			.open nav {
-				left: 0;
-				opacity: 1;
-			}
-			nav .inner {
-				padding: 25px;
-			}
-			nav .inner ul {
-			list-style: none;
-			margin: 0;
-			padding: 0;
-			}
-			nav .inner ul li {
-			position: relative;
-			margin: 0;
-			border-bottom: 1px solid #333;
-			}
-			nav .inner ul li a {
-			display: block;
-			color: #333;
-			font-size: 14px;
-			padding: 1em;
-			text-decoration: none;
-			transition-duration: 0.2s;
-			}
-			nav .inner ul li a:hover {
-			background: #e4e4e4;
-			}
-			@media screen and (max-width: 767px) {
-			nav {
-				left: -220px;
-				width: 220px;
-			}
-			}
-			/*============
-			.toggle_btn
-			=============*/
-			.toggle_btn {
-			display: block;
-			position: fixed;
-			top: 30px;
-			right: 30px;
-			width: 30px;
-			height: 30px;
-			transition: all .5s;
-			cursor: pointer;
-			z-index: 3;
-			}
-			.toggle_btn span {
-			display: block;
-			position: absolute;
-			left: 0;
-			width: 30px;
-			height: 2px;
-			background-color: #333;
-			border-radius: 4px;
-			transition: all .5s;
-			}
-			.toggle_btn span:nth-child(1) {
-			top: 4px;
-			}
-			.toggle_btn span:nth-child(2) {
-			top: 14px;
-			}
-			.toggle_btn span:nth-child(3) {
-			bottom: 4px;
-			}
-			.open .toggle_btn span {
-			background-color: #fff;
-			}
-			.open .toggle_btn span:nth-child(1) {
-			-webkit-transform: translateY(10px) rotate(-315deg);
-			transform: translateY(10px) rotate(-315deg);
-			}
-			.open .toggle_btn span:nth-child(2) {
-			opacity: 0;
-			}
-			.open .toggle_btn span:nth-child(3) {
-			-webkit-transform: translateY(-10px) rotate(315deg);
-			transform: translateY(-10px) rotate(315deg);
-			}
-			/*============
-			#mask
-			=============*/
-			#mask {
-			display: none;
-			transition: all .5s;
-			}
-			.open #mask {
-			display: block;
-			position: fixed;
-			top: 0;
-			left: 0;
-			width: 100%;
-			height: 100%;
-			background: #000;
-			opacity: .8;
-			z-index: 2;
-			cursor: pointer;
-			}
-			/*============
-			main
-			=============*/
-			main {
-			padding: 50px;
-			}
-			main h1 {
-			font-family: 'Open Sans', sans-serif;
-			font-weight: 400;
+		.picture {
 			text-align: center;
-			}
-			/*============
-			body
-			=============*/
-			body {
-			font-family: 'Open Sans', sans-serif;
-			font-weight: 400;
-			}
-			/*ここまでハンバーガーバーのCSS*/
-		</style>
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-		<script src="./js/script.js"></script>
-		<script>
-			//ハンバーガーバー
-			(function ($) {
-				var $nav = $('#navArea');
-				var $btn = $('.toggle_btn');
-				var $mask = $('#mask');
-				var open = 'open'; // class
-				// menu open close
-				$btn.on('click', function () {
-					if (!$nav.hasClass(open)) {
-						$nav.addClass(open);
-					} else {
-						$nav.removeClass(open);
-					}
-				});
-				// mask close
-				$mask.on('click', function () {
-					$nav.removeClass(open);
-				});
-			})(jQuery);
-		</script>
-	</head>
+			color: rgb(255, 255, 255);
+			margin: 8px;
+		}
 
-	<header id="top">
-		<a href="https://zobio.github.io"> <img src="./logo_black.jpg" width="20%" height="20%"> </a>
-	</header>
+		.base {
+			text-align: center;
+			color: rgb(255, 255, 255);
+		}
 
-	<body>
-		<!--ここからハンバーガーバー-->
-		<div id="navArea">
-		
-			<nav>
-				<div class="inner">
-					<ul>
-						<li><a href="#">Text</a></li>
-						<li><a href="#">Text</a></li>
-						<li><a href="#">Text</a></li>
-					</ul>
-				</div>
-			</nav>
-		
-			<div class="toggle_btn">
-				<span></span>
-				<span></span>
-				<span></span>
-			</div>
-		
-			<div id="mask"></div>
-		
-		</div>
-		<!--ここまでハンバーガーバー-->
-		<div class = "picture">
-			<img src = "./road.jpg" alt = "openPage" width = "100%" height="100%">
-		</div>
-		<h1 class = "begin">Zobio's blog</h1>
-		<div class = "enter">
-			<a href="https://zobio.github.io/blog_start.html" style="font-size: 15pt; color: white">Enter</a>
-		</div>
-		<h2 class = "base">Others</h2>
-		<div class = "link">
-			<a href = "https://twitter.com/zobio_go" style="font-size: 15pt; color: white">Twitter</a>
-			<a href = "https://github.com/Zobio" style="font-size: 15pt; color: white">GitHub</a>
-		</div>
-		<h2 class="base">Archive</h2>
-		<div class="archive">
-			<h3>2021/4/10</h3>
-			<a href="./blog/shinjikun.html" style="font-size: 30pt;">シンジ君が運極になるかもしれない</a>
-			<h3>2021/3/18</h3>
-			<a href="./blog/anime_shimo.html" style="font-size: 30pt;">2020年に見たアニメれびゅー[下半期]</a>
-			<h3>2021/3/17</h3>
-			<a href="./blog/anime_kami.html" style="font-size:30pt;">2020年に見たアニメれびゅー[上半期]</a>
-		</div>
-		<br>
-	</body>
+		.enter {
+			text-align: center;
+			color: white;
+			font-weight: bold;
+			border: solid 1px #fff;
+			width: 100px;
+			height: 30px;
+			margin: auto;
+		}
 
-	<footer>
-		<table border="0" cellspacing="0" cellpadding="0">
-			<tr>
-				<td align="center">
-					<img src="http://www.rays-counter.com/d481_f6_010/604f5d452e537/" alt="アクセスカウンター" border="0">
-				</td>
-			</tr>
-		</table>
-		<div style="text-align : right; font-size: 20px;"><a href="#top">ページトップに戻る</a></div>
-	</footer>
+		.link {
+			text-align: center;
+			margin: 2px;
+		}
+
+		.archive {
+			color: white;
+		}
+	</style>
+</head>
+
+<header id="top">
+	<a href="https://zobio.github.io"> <img src="./logo_black.jpg" width="20%" height="20%"> </a>
+</header>
+
+<body>
+	<div class="picture">
+		<img src="./road.jpg" alt="openPage" width="100%" height="100%">
+	</div>
+	<h1 class="begin">Zobio's blog</h1>
+	<div class="enter">
+		<a href="https://zobio.github.io/blog_start.html" style="font-size: 15pt; color: white">Enter</a>
+	</div>
+	<h2 class="base">Others</h2>
+	<div class="link">
+		<a href="https://twitter.com/zobio_go" style="font-size: 15pt; color: white">Twitter</a>
+		<a href="https://github.com/Zobio" style="font-size: 15pt; color: white">GitHub</a>
+	</div>
+	<h2 class="base">Archive</h2>
+	<div class="archive">
+		<h3>2021/4/10</h3>
+		<a href="./blog/shinjikun.html" style="font-size: 30pt;">シンジ君が運極になるかもしれない</a>
+		<h3>2021/3/18</h3>
+		<a href="./blog/anime_shimo.html" style="font-size: 30pt;">2020年に見たアニメれびゅー[下半期]</a>
+		<h3>2021/3/17</h3>
+		<a href="./blog/anime_kami.html" style="font-size:30pt;">2020年に見たアニメれびゅー[上半期]</a>
+	</div>
+	<br>
+</body>
+
+<footer>
+	<table border="0" cellspacing="0" cellpadding="0">
+		<tr>
+			<td align="center">
+				<img src="http://www.rays-counter.com/d481_f6_010/604f5d452e537/" alt="アクセスカウンター" border="0">
+			</td>
+		</tr>
+	</table>
+	<div style="text-align : right; font-size: 20px;"><a href="#top">ページトップに戻る</a></div>
+</footer>
+
 </html>
