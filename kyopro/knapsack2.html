@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+
+<html lang="ja">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Zobio's blog - 個数制限なしナップサック問題</title>
+	<link rel="icon" href="https://zobio.github.io/test.ico">
+	<style>
+		.main img{
+			
+		}
+	</style>
+</head>
+
+<header>
+	<a href="https://zobio.github.io"> <img src="https://zobio.github.io/logo.jpg" width="20%" height="20%"> </a>
+</header>
+
+<body>
+	<div class="title">
+		<h3>2021/5/28</h3>
+		<h1>個数制限なしナップサック問題</h1>
+	</div>
+	<hr>
+	<div class="main">
+		<p>問題例</p>
+		<p>
+			N個の品物があります。 品物には1,2,…,Nと番号が振られています。 各i(1≤i≤N) について、品物iの重さはwiで、価値はviです。太郎君は、N個の品物のうちいくつか<spat style="font-weight : bold;">(複数可)</spat> を選び、ナップサックに入れて持ち帰ることにしました。ナップサックの容量はWであり、持ち帰る品物の重さの総和はW以下でなければなりません。太郎君が持ち帰る品物の価値の総和の最大値を求めてください。
+		</p>
+		<p>引用: <a href="https://atcoder.jp/contests/dp/tasks/dp_d">https://atcoder.jp/contests/dp/tasks/dp_d</a>(一部編集)</p>
+		<br>
+		<p>考え方</p>
+		<p>
+			dp[i][j](i番目までの品物から重さの合計がj以下になるように選んだ時の価値の最大値)とおいて、k個まで選べるようにしてmax(dp[i][j - k * w[i]] + k * v[i], dp[i + 1][j])とすると3重ループになってしまう。
+		</p>
+		<p>
+			しかしよく考えると、k(k >= 1)のとき、何回も同じ計算をしていることがわかる。なぜなら、dp[i + 1][j]の計算においてk個選ぶ場合は、dp[i + 1][j - w[i]]の計算においてk - 1個選んでいるのと同じだからである。
+		</p>
+		<p>
+			したがって、次のような式変形ができる。(蟻本p59より引用)
+		</p>
+		<p>
+			dp[i + 1][j]
+		</p>
+		<p>
+			= max{dp[i][j - k * w[i]] + k * v[i] | 0 <= k} //0 ~ k個順番に選んで計算している
+		</p>
+		<p>
+			= max(dp[i][j], max{dp[i][j - k * w[i]] + k * v[i] | 1 <= k})
+		</p>
+		<p>
+			= max(dp[i][j], max{dp[i][(j - w[i]) - k * w[i]] + k * v[i] | 0 <= k} + v[i]) dp[i + 1][j - w[i]]のときk - 1個選んでいる
+		</p>
+		<p>
+			= max(dp[i][j], dp[i + 1][j - w[i]] + v[i])
+		</p>
+	</div>
+</body>
+
+</html>
