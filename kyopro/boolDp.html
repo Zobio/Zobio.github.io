@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+
+<html lang="ja">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Zobio's blog - 真偽値DPの更新</title>
+	<link rel="icon" href="https://zobio.github.io/test.ico">
+</head>
+
+<header>
+	<a href="https://zobio.github.io"> <img src="https://zobio.github.io/logo.jpg" width="20%" height="20%"> </a>
+</header>
+
+<body>
+	<div class="title">
+		<h3>2021/5/31</h3>
+		<h1>真偽値DPの更新</h1>
+	</div>
+	<hr>
+	<div class="main">
+		<p>
+			dp[i+1] ... i番目までに条件を満たすものがあるか
+		</p>
+		<p>
+			この場合、dp[i + 1]が条件を満たしていなくてもそれ以前のdpが1つでも条件を満たしていればいいので、次のような書き方ができる。
+		</p>
+		<p>
+			//何らかの操作<br>
+			dp[i + i] |= dp[i]  // |はOR演算子なので、dp[i + 1]またはdp[i]がtrueの場合trueが代入される
+		</p>
+		<p>
+			こうすると、わざわざフラグを持つ変数を用意しておかなくてもよくなる
+		</p>
+	</div>
+</body>
+
+</html>
