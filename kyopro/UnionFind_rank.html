@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+
+<html lang="ja">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Zobio's blog - Union-Find木の深さの変更</title>
+	<link rel="icon" href="https://zobio.github.io/test.ico">
+</head>
+
+<header>
+	<a href="https://zobio.github.io"> <img src="https://zobio.github.io/logo.jpg" width="20%" height="20%"> </a>
+</header>
+
+<body>
+	<div class="title">
+		<h3>2021/7/18</h3>
+		<h1>Union-Find木の深さの変更</h1>
+	</div>
+	<hr>
+	<div class="main">
+		<p>蟻本のUnion-Find木(p.84)の併合をする関数を見ると、下のような実装になっている。</p>
+		<br>
+		<p>
+			//xとyの属する集合を併合<br>
+			void unite(int x, int y) {<br>
+				x = find(x);<br>
+				y = find(y);<br>
+				if(x == y) return;<br>
+<br>
+				if(rank[x] < rank[y]) {<br>
+					par[x] = y;<br>
+				}else{<br>
+					per[y] = x;<br>
+					<b>if(rank[x] == rank[y]) rank[x]++;</b><br>
+				}<br>
+			}<br>
+		</p>
+		<br>
+		<p>
+			「 if(rank[x] == rank[y]) rank[x]++; 」
+		</p>
+		<p>
+			この部分について、最初はなぜ併合する2つの木が同じ長さの時だけ併合後の木の長さを+1しなければいけないけないんだ...?　と思っていたが、図示してみるととても分かりやすかった。(教えてくれた方、ありがとうございます。)
+		</p>
+		<img src="picture/UnionFind_rank.jpg" width="35%" height="35%" style="display: block; margin: auto;">
+		<p>
+			上の図のように、Union-Find木は深い木の方の根に深くない方の木の根をつけることで、併合後の木の深さの増加を抑えている(図の上部分)。
+		</p>
+		<p>
+			しかし、2つの木の深さが同じ場合、根っこの分深さが1増えてしまう(図の下部分)。この部分が、「 if(rank[x] == rank[y]) rank[x]++; 」なのである。(逆に、これ以外で深さが増えることはない。)
+		</p>
+	</div>
+	<br><br>
+</body>
+
+</html>
