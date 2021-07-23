@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+
+<html lang="ja">
+
+<head>
+	<meta charset="UTF-8">
+	<title>ワーシャルフロイド法(というかDP)のループの順番</title>
+	<link rel="icon" href="https://zobio.github.io/test.ico">
+</head>
+
+<header>
+	<a href="https://zobio.github.io"> <img src="https://zobio.github.io/logo.jpg" width="20%" height="20%"> </a>
+</header>
+
+<style>
+	.main img{
+		width : 20%;
+		height : 20%;
+	}
+</style>
+
+<body>
+	<div class="title">
+		<h3>2021/7/23</h3>
+		<h1>ワーシャルフロイド法(というかDP)のループの順番</h1>
+	</div>
+	<hr>
+	<div class="main">
+		<p>
+			<a href="https://atcoder.jp/contests/abc012/tasks/abc012_4">ABC12のD問題</a>
+			は、頂点であるバス停の最大数が300で、3乗しても27000000なのでワーシャルフロイド法が使えそうだとわかる。
+		</p>
+		<p>
+			ワーシャルフロイド法とは、「始点」「終点」「中継点」を全ての頂点で求めて最短距離を求めていくDPの一種である。
+		</p>
+		<p>
+			実装方法がとても簡単で、以下のような単純な3重ループでできる。
+		</p>
+		<p>
+			for (int k = 0; k < n; k++) // 中継点<br>
+			&nbsp;&nbsp;&nbsp;&nbsp;for (int i = 0; i < n; i++) // 始点<br>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for (int j = 0; j < n; j++) // 終点<br>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;d[i][j] = min(d[i][j], d[i][k] + d[k][j]);
+		</p>
+		<br>
+		<p>
+			これについて、「中継点」をループの内側に入れても問題はないと思い、いざ提出してみるとばっちりWAが帰ってきた。
+			(<a href="https://atcoder.jp/contests/abc012/submissions/24457190">実際の提出</a>)
+		</p>
+		<p>
+			しかし、なぜ中継点をループの内側に入れてはダメなのか、直観でわからなかったので図を書いてみた。(クリックすると拡大します)
+		</p>
+		<a href="picture/WarshallFloyd_loop_1.jpg"><img src="picture/WarshallFloyd_loop_1.jpg"></a>
+		<p>
+			まず自分が想定していたようなイメージが上の図である。<br>1→2(または2→1)のルートの初期値がINFで、頂点0を経由するルートで8分で行けることがわかる。
+		</p>
+		<p>
+			このような場合だと、中継点をループの内側にしても問題はおきない。次に、下の図は問題が起こっているが偶然答えが一致するヒヤリハットパターンである。
+		</p>
+		<a href="picture/WarshallFloyd_loop_2.jpg"><img src="picture/WarshallFloyd_loop_2.jpg"></a>
+		<p>
+			0→4(または4→0)のルートで、中継点が1(つまりi = 0, j = 4, k = 1)のとき、本来求まっていなくてはいけない<b>1-4がINFになっている。</b>
+		</p>
+		<p>
+			なぜなら、1-4のルートは当然ながら0-4のルートよりも後で求まるものだからである。<br>今回はたまたま頂点3を経由する0-3-4のルートが最小であったため、最終的な解が間違いではなかったが、下の図のような場合、間違いになってしまう。
+		</p>
+		<a href="picture/WarshallFloyd_loop_3.jpg"><img src="picture/WarshallFloyd_loop_3.jpg"></a>
+		<p>
+			この場合、0-4の最短ルートは頂点1と3を経由する0-1-3-4ルートで3分でいけるはずであるが、先述の通り1-4が非自明(INF)であるため、0-1-3-4ルートを正しく求めることができず、間違った解になってしまう。
+		</p>
+		<p>
+			そのため、中継点はループの内側ではいけないのである。ループの外側にしておけば、中継点と始点/終点がINFになることはなく(先に内側のループで求まっているため)間違った解になることはない。
+		</p>
+		<p>
+			今回の例に限らずDPの漸化式を立てるときは、比較部分に未決定の値がないかどうかちゃんと見る必要があるなぁと思いますた。
+		</p>
+	</div>
+	<br><br>
+</body>
+
+</html>
