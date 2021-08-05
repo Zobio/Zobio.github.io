@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+
+<html lang="ja">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Javaで競プロをするデメリットとメリット</title>
+	<link rel="icon" href="https://zobio.github.io/test.ico">
+</head>
+
+<header>
+	<a href="https://zobio.github.io"> <img src="https://zobio.github.io/logo.jpg" width="20%" height="20%"> </a>
+</header>
+
+<style>
+	.main img{
+		width : 40%;
+		height : 40%;
+	}
+</style>
+
+<body>
+	<div class="title">
+		<h3>2021/8/5</h3>
+		<h1>Javaで競プロをするデメリットとメリット</h1>
+	</div>
+	<hr>
+	<div class="main">
+		<p>Javaはとても便利な言語です。</p>
+		<p>オブジェクト指向を採用しているため、アプリケーションなどの大規模な開発に向いています。</p>
+		<p>
+			また「Java仮想マシン(JVM)」PCにインストールし、これを介して実行をするため、OSに依存しないという利点があります。(その代わり絶対に実行するPCにJavaをインストールする必要があるんですが...)
+		</p>
+		<p>
+			このような点が重宝され、リリースから20年以上経っている現在でも様々な場面で使用されています。
+		</p>
+		<p>
+			しかし個人的には、少なくともAtCoderなどの競技プログラミングにはJavaは向いていないのではないか、と思っています。
+		</p>
+		<p>
+			かくいう私は競技プログラミングをJavaで半年ほどやり、その後使う言語をC++に変えました。もう今では<strong>Javaに戻そうという気は1mmもありません</strong>。その理由を書いていきたいと思います。
+		</p>
+		<h2>1.実行速度が遅い</h2>
+		<p>
+			正直これが1番の理由です。JavaはC系言語よりもはるかに遅く、また多くの場合Pythonなどのいわゆる軽量プログラミング言語 (LL)よりも遅いです。
+		</p>
+		<p>
+			例として、<a href="https://atcoder.jp/contests/abc173/tasks/abc173_a">ABC173のA問題</a>をC++、Python(PyPy)、Javaで解いてみます。
+		</p>
+		<p>
+			この問題では、<strong>標準入力</strong>されたものを変数に<strong>代入</strong>する操作、それをもとに<strong>演算</strong>し画面に<strong>表示</strong>する操作が行われていて、
+			ループを含まないため定数時間で解くことができます。
+		</p>
+		<p>
+			以下が実際に提出したコードです。(順番にC++、Python(PyPy)、Java)
+		</p>
+		<div class="pictures">
+			<img src="picture/abc173a_cpp.jpg"><br>
+			<img src="picture/abc173a_py.jpg"><br>
+			<img src="picture/abc173a_java.jpg"><br>
+		</div>
+		<p>
+			そして、これが実行時間です。
+		</p>
+		<img src="picture/abc173_time.jpg"><br>
+		<p>
+			いやーーJava遅いなぁ。この問題ではどの言語でもACをとれているのですが、問題によっては<strong>公式の想定解法でTLEになってしまう</strong>事がそこそこ(特にABCのD問題くらいから)あります。
+		</p>
+		<p>
+			わざと実行時間について厳しい制約下でやりたい、という「呼吸法をトレーニングするためにわざと呼吸がしにくくなるマスクをつけているジョジョ2部のジョセフ・ジョースター」みたいな事がしたい人を除けば、
+			この遅さだけでもJava以外の言語で競プロを行う十分な理由になると思います。
+		</p>
+		<h2>2.お作法(?)がめんどくさい</h2>(string[] args ファイル名、Scanner System.out.println)
+		<h2>3.文法がC++と似ているため、わざわざJavaを選ぶ必要がない</h2>
+
+		<h2>メリット1</h2>
+	</div>
+	<br><br>
+</body>
+
+</html>
