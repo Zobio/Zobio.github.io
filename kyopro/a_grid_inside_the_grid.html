@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+
+<html lang="ja">
+
+<head>
+	<meta charset="UTF-8">
+	<title>[自作問題]A grid inside the grid</title>
+	<link rel="icon" href="https://zobio.github.io/test.ico">
+</head>
+
+<header>
+	<a href="https://zobio.github.io"> <img src="https://zobio.github.io/logo.jpg" width="20%" height="20%"> </a>
+</header>
+
+<style>
+	.main img {
+		width: 40%;
+		height: 40%;
+	}
+	.example {
+		font-size: 20px;
+	}
+</style>
+
+<body>
+	<div class="title">
+		<h1>[自作問題]A grid inside the grid</h1>
+	</div>
+	<hr>
+	<div class="main">
+		<p>ABCのB問題くらいで出そうな問題を思いついたので忘れないうちに書いときます。</p>
+		<p style="color:red; font-size: 20px;">ページ下部に答えがあります。</p>
+		<br>
+		<p>実行時間制限: 2 sec</p>
+		<h1>問題文</h1>
+		<p>
+			チャーリー君はチェス盤を作る仕事をしています。
+		</p>
+		<p>
+			ある日、徹夜明けで仕事をしていたチャーリー君は疲れからか間違えて8 * 8マスではなくN * Nのマスのチェス盤を作ってしまいました。
+		</p>
+		<p>
+			この時、チャーリー君はふと次のように思いました。
+		</p>
+		<p>
+			「このチェス盤のなかに正方形は何個あるのだろう?」
+		</p>
+		<p>
+			整数Nが与えられるので、チャーリー君の疑問に答えてあげてください。なお、答えの値は非常に大きな値になることがあるので、10^9 + 7で割ったあまりを出力してください。
+		</p>
+		<h1>制約</h1>
+		<p style="font-size: 20px;">
+			[Easy mode]  1 <= N <= 10 ^ 2<br>
+			[Hard mode]  1 <= N <= 10 ^ 6
+		</p>
+		<h1>入力</h1>
+		<p>入力は以下の形式で標準入力から与えられる。</p>
+		<p class="example">N</p>
+		<h1>出力</h1>
+		<p>答えを10^9 + 7で割ったあまりを出力してください。</p>
+		<h1>入力例1</h1>
+		<p class="example">3</p>
+		<h1>出力例1</h1>
+		<p class="example">14</p>
+		<p>・選び方は以下の通り。</p>
+		<img src="picture/grid_1.jpg">
+		<h1>入力例2</h1>
+		<p class="example">1</p>
+		<h1>出力例2</h1>
+		<p class="example">1</p>
+		<p>・元々が1*1の正方形のため、正方形の選び方は1通りしかない。</p>
+		<br><br><br>
+		<h1>こたえ</h1>
+		<h2>解法1 四角形のパターンを全探索して正方形となるものを数える</h2>
+		<p>
+			「四角形の上/下/左/右の位置」をもとに全ての四角形を4重ループで考え、その中で正方形となるものをカウントしていく方法です。
+		</p>
+		<p>以下が実装例です。</p>
+		<img src="picture/grid_1_code1.jpg">
+		<p>追記:MODで割るの忘れてました。すみません。</p><br>
+		<p>1つ注意が必要なのが、N * Nマスの座標は、(0, 0)から(N, N)まであるので、nを1増やして考えないといけないということです。</p>
+		<p>この方法だとO(N ^ 4)で、とても小さい値でしか間に合いません。Easy modeならACですが、Hard modeは確実に間に合わないでしょう。</p>
+		<h2>解法2 Σを使って定数時間で解く</h2>
+		<p>実はこの問題はΣでまとめられます。まずは入力例2の画像をもう一度見てみます。</p>
+		<img src="picture/grid_1_kaisetsu.jpg" id="picture1">
+		<p>
+			すると、正方形の一辺の長さによってこのようにグループ分けができます。
+		</p>
+		<p>
+			一辺が1の正方形は9個、一辺が2の正方形の時は4個、一辺が3の正方形は1個...　
+		</p>
+		<p>
+			そうです。実はN * NマスにあるK * Kの正方形の数は、(N - K + 1) ^ 2になっているのです。
+		</p>
+		<p>
+			何故なら、K * Kの正方形が動く余地は上下方向、左右方向にそれぞれN - K + 1だけあるからです。
+			例えば、<a href="#picture1">先ほどの写真</a>を見てみると3 * 3のマス目の中で2 * 2の正方形は2 ^ 2 = 4パターンありますが、これは動く余地が上下/左右方向に2あるからです。
+		</p>
+		<p>つまり、答えは以下のようにまとめられます。</p>
+		<img src="picture/grid_1_formula.jpg">
+		<p>「結局<img src="picture/grid_1_forula2.gif" style="width:3%; height:3%">やんけ！」となりますが、大きいほうの正方形から考えたら、選び方は1 * 1、2 * 2 ... N * Nとなるので結局そうなりますね。よって以下のようにO(1)で解くことができました。</p>
+		<img src="picture/grid_1_code2.jpg">
+	</div>
+	<br><br>
+</body>
+
+</html>
