@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+
+<html lang="ja">
+
+<head>
+	<meta charset="UTF-8">
+	<title>覆面算を作り(自動生成し)ました</title>
+	<link rel="icon" href="https://zobio.github.io/test.ico">
+</head>
+
+<header>
+	<a href="https://zobio.github.io"> <img src="https://zobio.github.io/logo.jpg" width="20%" height="20%"> </a>
+</header>
+
+<style>
+	.main img{
+		width : 40%;
+		height : 40%;
+	}
+
+	.hidden_box {
+    margin: 2em 0;
+    padding: 0;
+	}
+
+	/*ボタン装飾*/
+	.hidden_box label {
+		padding: 15px;
+		font-weight: bold;
+		background: #efefef;
+		border-radius: 5px;
+		cursor :pointer;
+		transition: .5s;
+	}
+
+	/*アイコンを表示*/
+	.hidden_box label:before {
+		display: inline-block;
+		content: '\f078';
+		font-family: 'FontAwesome';
+		padding-right: 5px;
+		transition: 0.2s;
+	}
+
+	/*ボタンホバー時*/
+	.hidden_box label:hover {
+		background: silver;
+	}
+
+	/*アイコンを切り替え*/
+	.hidden_box input:checked ~ label:before {
+		content: '\f00d';
+		-webkit-transform: rotate(360deg);
+		transform: rotate(360deg);
+		color: #668ad8;
+	}
+
+	/*チェックは見えなくする*/
+	.hidden_box input {
+		display: none;
+	}
+
+	/*中身を非表示にしておく*/
+	.hidden_box .hidden_show {
+		height: 0;
+		padding: 0;
+		overflow: hidden;
+		opacity: 0;
+		transition: 0.8s;
+	}
+
+	/*クリックで中身表示*/
+	.hidden_box input:checked ~ .hidden_show {
+		padding: 10px 0;
+		height: auto;
+		opacity: 1;
+	}
+</style>
+
+<body>
+	<div class="title">
+		<h3>2021/8/18</h3>
+		<h1>覆面算を作り(自動生成し)ました</h1>
+	</div>
+	<hr>
+	<div class="main">
+		<h3>*注意 異なる文字に同じ数字が入ることはありません</h3>
+		<h2>問題1</h2>
+		<img src="picture/fukumen1.jpg">
+		<h2>問題2</h2>
+		<img src="picture/fukumen2.jpg">
+		<div class="hidden_box">
+			<input type="checkbox" id="label1" />
+			<label for="label1">こたえ</label>
+			<div class="hidden_show">
+				<!--非表示ここから-->
+				<h2>問題1</h2>
+				<img src="picture/fukumen1_ans.jpg">
+				<br>
+				<h2>問題2</h2>
+				<img src="picture/fukumen2_ans.jpg">
+				<br>
+				<p>
+					覆面算は文字が11種類以上あることはない(数字は0~9の10種類しかないから)ので、
+					数字の割り当て方は実は最大で10!通りしかありません。
+				</p>
+				<p>
+					そのため、3628800通り全てを試せば必ずどれかが当たります。楽チンですね！
+				</p>
+				<br>
+				<!--ここまで-->
+			</div>
+		</div>
+	</div>
+	<br><br>
+</body>
+
+</html>
