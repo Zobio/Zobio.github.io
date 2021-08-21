@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+
+<html lang="ja">
+
+<head>
+	<meta charset="UTF-8">
+	<title>ABC215参戦記</title>
+	<link rel="icon" href="https://zobio.github.io/test.ico">
+</head>
+
+<header>
+	<a href="https://zobio.github.io"> <img src="https://zobio.github.io/logo.jpg" width="20%" height="20%"> </a>
+</header>
+
+<style>
+	.main img{
+		width : 40%;
+		height : 40%;
+	}
+</style>
+
+<body>
+	<div class="title">
+		<h3>2021/8/22</h3>
+		<h1>ABC215参戦記</h1>
+	</div>
+	<hr>
+	<div class="main">
+		<p>
+			そろそろ8問体制のABCにも慣れてきました。(まあ解ける問題数は変わんないんだけど...)
+		</p>
+		<p>
+			ただ今回は全体的に問題の難易度がならされていて、C, D問題も比較的簡単だった気がします。(直大さんもそういう主旨のツイートをしていました。)
+		</p>
+		<blockquote class="twitter-tweet">
+			<p lang="ja" dir="ltr">
+				ABC作問に関わってないけど、８問コンテストの予定で言うと、過去４回で、上振れ・上振れ・上振れ・ちょうど良い、って感じで、ようやくちょうど良い感じのが来て安心してる。たまには下振れてもいいのよ。</p>&mdash;
+			chokudai(高橋 直大)🍆 (@chokudai) <a
+				href="https://twitter.com/chokudai/status/1429096213983334416?ref_src=twsrc%5Etfw">August 21, 2021</a>
+		</blockquote>
+		<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+		<br>
+		<p>今回は4完2WAでレートが712(+42)になりました。最近調子が良くてウレピイです。</p>
+		<img src="picture/abc215_graph.jpg">
+		<br>
+		<h1>A - Your First Judge</h1>
+		<p>特に言うことはないです。こういう問題はテストケースを確認しないで提出していいと思うのですが、タイプミスが怖いので結局全部試してから提出してます。</p>
+		<img src="picture/abc215a.jpg">
+		<br>
+		<h1>B - log2(N)</h1>
+		<h3>WAしました。</h3>
+		<p>いやちょっと言い訳させてほしいんですけど、<span style="color: red;">題名ひどくないですか？？</div> </p>
+		<p>という訳で題名どおりにfloor(log2(N))を出力したらWAになってしまいました。どうやらfloor(log2((long double)N))だと耐えるらしいです。</p>
+		<img src="picture/abc215b.jpg">
+		<p>このように順当に累乗していく解法の他に、上からbitを見ていって初めに立っているbitのある場所が答え、というのがめちゃくちゃスマートな解法でびっくりしました。(全く思いつかなかった...)</p>
+		<br>
+		<h1>C - One More aab aba baa</h1>
+		<p>
+			文字列の辞書順の並べ替えはnext_permutationを使うというのを知っていたのですぐに実装できました。やはり過去問ゲーですね。
+		</p>
+		<img src="picture/abc215c.jpg">
+		<br>
+		<h1>D - Coprime 2</h1>
+		<p>眠いので明日書きます。</p>
+	</div>
+	<br><br>
+</body>
+
+</html>
