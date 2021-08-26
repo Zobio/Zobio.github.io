@@ -17,92 +17,127 @@
 		width: 40%;
 		height: 40%;
 	}
-	.main {
-		font-size: 1.2rem;
+	
+	.formula {
+		font-size: larger;
+		font-weight : bold;
 	}
 </style>
 
 <body>
 	<div class="title">
-		<h1>[自作問題]A grid inside the grid</h1>
+		<h3>2021/8/27</h3>
+		<h1>お釣り生成問題における貪欲法で解けるための条件の証明の図解</h1>
 	</div>
 	<hr>
-	<div class="main">
-		<p>ABCのB問題くらいで出そうな問題を思いついたので忘れないうちに書いときます。</p>
-		<p style="color:red; font-size: 20px;">ページ下部に答えがあります。</p>
-		<br>
-		<p>実行時間制限: 2 sec</p>
-		<h1>問題文</h1>
-		<p>
-			チャーリー君はチェス盤を作る仕事をしています。
-		</p>
-		<p>
-			ある日、徹夜明けで仕事をしていたチャーリー君は疲れからか間違えて8 * 8マスではなくN * Nのマスのチェス盤を作ってしまいました。
-		</p>
-		<p>
-			この時、チャーリー君はふと次のように思いました。
-		</p>
-		<p>
-			「このチェス盤のなかに正方形は何個あるのだろう?」
-		</p>
-		<p>
-			整数Nが与えられるので、チャーリー君の疑問に答えてあげてください。なお、答えの値は非常に大きな値になることがあるので、10^9 + 7で割ったあまりを出力してください。
-		</p>
-		<h1>制約</h1>
-		<p style="font-size: 20px;">
-			[Easy mode]  1 <= N <= 10 ^ 2<br>
-			[Hard mode]  1 <= N <= 10 ^ 6
-		</p>
-		<h1>入力</h1>
-		<p>入力は以下の形式で標準入力から与えられる。</p>
-		<p class="example">N</p>
-		<h1>出力</h1>
-		<p>答えを10^9 + 7で割ったあまりを出力してください。</p>
-		<h1>入力例1</h1>
-		<p class="example">3</p>
-		<h1>出力例1</h1>
-		<p class="example">14</p>
-		<p>・選び方は以下の通り。</p>
-		<img src="picture/grid_1.jpg">
-		<h1>入力例2</h1>
-		<p class="example">1</p>
-		<h1>出力例2</h1>
-		<p class="example">1</p>
-		<p>・元々が1*1の正方形のため、正方形の選び方は1通りしかない。</p>
-		<br><br><br>
-		<h1>こたえ</h1>
-		<h2>解法1 四角形のパターンを全探索して正方形となるものを数える</h2>
-		<p>
-			「四角形の上/下/左/右の位置」をもとに全ての四角形を4重ループで考え、その中で正方形となるものをカウントしていく方法です。
-		</p>
-		<p>以下が実装例です。</p>
-		<img src="picture/grid_1_code1.jpg">
-		<p>追記:MODで割るの忘れてました。すみません。</p><br>
-		<p>1つ注意が必要なのが、N * Nマスの座標は、(0, 0)から(N, N)まであるので、nを1増やして考えないといけないということです。</p>
-		<p>この方法だとO(N ^ 4)で、とても小さい値でしか間に合いません。Easy modeならACですが、Hard modeは確実に間に合わないでしょう。</p>
-		<h2>解法2 Σを使って定数時間で解く</h2>
-		<p>実はこの問題はΣでまとめられます。まずは入力例2の画像をもう一度見てみます。</p>
-		<img src="picture/grid_1_kaisetsu.jpg" id="picture1">
-		<p>
-			すると、正方形の一辺の長さによってこのようにグループ分けができます。
-		</p>
-		<p>
-			一辺が1の正方形は9個、一辺が2の正方形の時は4個、一辺が3の正方形は1個...　
-		</p>
-		<p>
-			そうです。実はN * NマスにあるK * Kの正方形の数は、(N - K + 1) ^ 2になっているのです。
-		</p>
-		<p>
-			何故なら、K * Kの正方形が動く余地は上下方向、左右方向にそれぞれN - K + 1だけあるからです。
-			例えば、<a href="#picture1">先ほどの写真</a>を見てみると3 * 3のマス目の中で2 * 2の正方形は2 ^ 2 = 4パターンありますが、これは動く余地が上下/左右方向に2あるからです。
-		</p>
-		<p>つまり、答えは以下のようにまとめられます。</p>
-		<img src="picture/grid_1_formula.jpg">
-		<p>「結局<img src="picture/grid_1_forula2.gif" style="width:3%; height:3%">やんけ！」となりますが、大きいほうの正方形から考えたら、選び方は1 * 1、2 * 2 ... N * Nとなるので結局そうなりますね。よって以下のようにO(1)で解くことができました。</p>
-		<img src="picture/grid_1_code2.jpg">
-		<br>
-		<p>参考:PUZZLEGRAMS p.4</p>
-	</div>
+	<p>
+		先日、<a href="https://atcoder.jp/contests/abc099/tasks/abc099_c">ABC99のC問題</a>を解いたのですが、これがまあ苦戦しました。
+	</p>
+	<p>
+		最初、持っているお金の中から1番残りの額に近いお金をどんどん選んでいくという貪欲法で行けると思ったのですが、結論から言うとこれはダメでした。(やはり未証明の貪欲法はコワイ)
+	</p>
+	<p>
+		しかし、日本のお金(1円, 5円, 10円, 50円, 100円, 500円, 1000円, 5000円, 10000円)に関しては直感的に貪欲法でOKな気がします。
+	</p>
+	<p>
+		ではどのような場合は貪欲法が使えて、どのような場合は使えないのでしょうか。
+	</p>
+	<br>
+	<p>
+		結論から言うと、{a[i] ... i番目のお金の額面、任意のi, j(i < j)について(a[i] < a[j])}としたときに、
+	</p>
+	<p class="formula">
+		a[j + 1] = p * a[j] - δ &nbsp;&nbsp;(ただし、0 <= δ < a[j]) &nbsp;&nbsp;&nbsp;...[式1]
+	<p>
+	<p>
+		としたときに、pとδは一意に求まります。このpとδについて、{h[x] ... x円を支払う場合に貪欲法を用いて求めたお金の最小個数}&nbsp;とすると、
+	</p>
+	<p class="formula">
+		p - 1 >= h[δ]  &nbsp;&nbsp;&nbsp;...[式2]
+	</p>
+	<p>
+		が全てのjについて成り立つことが貪欲法が使える条件です。
+	</p>
+	<p>
+		この文面だけを見ても、何故そうなのかどころか何を言っているのかすら分かりづらいので、図を使いながら説明していきます。
+	</p>
+	<br>
+	<p>
+		まずこの式の意味について説明します。
+	</p>
+	<p>
+		例として、1円、4円、7円、10円、15円を用意します。(a[0] = 1, a[1] = 4, a[2] = 7, a[3] = 10, a[4] = 15)
+	</p>
+	<p>
+		まず、1円と4円の関係について先ほどの式に当てはめていきます。
+	</p>
+	<p class="formula">
+		4 = <span style="color : red">4</span> * 1 - <span style="color: blue;">0</span>
+	</p>
+	<p>
+		赤字がp、青字がδです。これを式2に代入します。
+	</p>
+	<p class="formula">
+		(<span style="color : red">4</span> - 1 = ) 3 >= 0 (= h[δ] = h[<span style="color: blue;">0</span>])
+	</p>
+	<p>
+		成り立っていることが分かります。よってお金が1円と4円だけの場合、貪欲法によって解くことが最適であると分かります。(理由は後述)
+	</p>
+	<p>同じ手順で他のお金についても式にあてはめます。</p>
+	<p class="formula">7 = <span style="color : red">2</span> * 4 - <span style="color: blue;">1</span></p>
+	<p class="formula">(<span style="color : red">2</span> - 1 = ) 1 >= 1 ( = h[<span style="color: blue;">1</span>])&nbsp;&nbsp;&nbsp;...OK</p>
+	<br>
+	<p class="formula">10 = <span style="color : red">2</span> * 7 - <span style="color: blue;">4</span></p>
+	<p class="formula">(<span style="color : red">2</span> - 1 = ) 1 >= 1 ( = h[<span style="color: blue;">4</span>])&nbsp;&nbsp;&nbsp;...OK</p>
+	<br>
+	<p class="formula">15 = <span style="color : red">2</span> * 10 - <span style="color: blue;">5</span></p>
+	<p class="formula">(<span style="color : red">2</span> - 1 = ) 1 >≠ 2 ( = h[<span style="color: blue;">5</span>])&nbsp;&nbsp;&nbsp;...NG!</p>
+	<br>
+	<p>
+		10円-15円の関係のみ式が成り立ちませんでした。
+	</p>
+	<p>
+		ここで、もう1度貪欲法の意味について考えてみます。
+	</p>
+	<p>
+		「このお金の組み合わせなら貪欲法が最適解法になる」とは「全ての数について、貪欲法が最適になる」ということです。
+	</p>
+	<p>
+		言い換えれば、「ある数について貪欲法が最適でない」とき、そのお金の組み合わせは貪欲法によるお釣り生成ができないと言うことです。逆にそのような数が存在しないとき、貪欲法が使用できると言えます。
+	</p>
+	<p>
+		そして先ほどの式1, 式2はその「ある数」を探す操作に他なりません。
+	</p>
+	<p>
+		貪欲法が最適でない、とは、「1番残りの金額に近いお金<span style="color : red">以外</span>を使ったほうが最終的な合計枚数が少なくなる」ケースがあるときです。
+	</p>
+	<p>
+		そのケースが起こる可能性があるのが、式1、式2の時なのです。
+	</p>
+	<img src="picture/cmp_picture.png" style="width: 30vw;">
+	<p>
+		上の画像は式1, 式2を図式化したものです。このようにした時に、全ての場合について「<strong>左の個数 - 1 >= 右の青部分の貪欲法を用いた最小個数</strong>」となっているのが貪欲法が最適である条件です。
+	</p>
+	<p>
+		この条件を満たさないとき、すなわち左の方が枚数が少ないとき、これは「1番残りの金額に近いお金<span style="color : red">以外</span>を使ったほうが合計枚数が少なくなる」ということになります。
+	</p>
+	<p>
+		今回の貪欲法の反例である10-15円について見てみます。
+	</p>
+	<p>
+		20円を作るとき、15円を用いる(貪欲法)と15円、4円、1円の3枚を使います。しかし1個下の10円を使うと、10円 * 2 = 20円で、2枚で済んでしまう事がわかります。よって、このお金の組み合わせでは貪欲法は使えません。
+	</p>
+
+	<br><br><br>
+	<p>
+		参考資料
+	</p>
+	<p>
+		<a href="https://qiita.com/s417-lama/items/0cdd95fddb2067876896">https://qiita.com/s417-lama/items/0cdd95fddb2067876896</a>
+	</p>
+	<p>
+		<a href="https://barrel.repo.nii.ac.jp/index.php?action=pages_view_main&active_action=repository_action_common_download&item_id=3664&item_no=1&attribute_id=21&file_no=1&page_id=13&block_id=135">https://barrel.repo.nii.ac.jp/index.php?action=pages_view_main&active_action=repository_action_common_download&item_id=3664&item_no=1&attribute_id=21&file_no=1&page_id=13&block_id=135</a>
+	</p>
 	<br><br>
 </body>
 
