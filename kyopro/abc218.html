@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+
+<html lang="ja">
+
+<head>
+	<meta charset="UTF-8">
+	<title>ABC218参戦記</title>
+	<link rel="icon" href="https://zobio.github.io/test.ico">
+</head>
+
+<header>
+	<a href="https://zobio.github.io"> <img src="https://zobio.github.io/logo.jpg" width="20%" height="20%"> </a>
+</header>
+
+<style>
+	.main img{
+		width : 40%;
+		height : 40%;
+	}
+</style>
+
+<body>
+	<div class="title">
+		<h3>2021/9/11</h3>
+		<h1>ABC218参戦記</h1>
+	</div>
+	<hr>
+	<div class="main">
+		<p>
+			3週間ぶりに出ました。そろそろ緑が見えてきたのでウキウキしつつちょっと緊張してました。
+		</p>
+		<p>
+			今回は43分3完0WAとかなり微妙な結果でした。
+		</p>
+		<img src="picture/abc218_graph.png">
+		<p>
+			レートはギリギリ減少を免れました。今回はC問題がかなり難しめ(diffがC>E>Dだった)だったので命拾いしました。
+		</p>
+		<br>
+		<h1>A - Weather Forecast</h1>
+		<p>
+			対応する文字列がoかxかの条件分岐で解けます。
+		</p>
+		<img src="picture/abc218a.jpg">
+		<br>
+		<h1>B - qwerty</h1>
+		<p>
+			i番目の文字は、'a' + P[i] - 1になるので、それを順次処理していきます。
+		</p>
+		<img src="picture/abc218b.jpg">
+		<br>
+		<h1>C - Shapes</h1>
+		<p>
+			90°回転させた後にS,T共に<span style="color: red;">左上に寄せる</span>という操作をすれば良いことに気づくまでにかなり時間がかかってしまいました。
+			その実装にもかなり時間がかかってしまい、D問題にあまり時間を残すことができませんでした。
+		</p>
+		<p>
+			考え方は、<br>まず、回転パターンは4通りしかない<br>↓<br>平行移動のパターンはいくらでもあるが、#部分の形だけに注目するとS,T共に同じ所(左上)に寄せてあげればいい<br>↓<br>片方のグリッドを固定して考えてもう片方を90°回転→S,T共に左上寄せ という操作を4回やって全て一致するケースがあったらYes、なかったらNo
+		</p>
+		<p>
+			みたいな感じで思いつきました。
+		</p>
+		<img src="picture/abc218c_1.jpg"><div></div>
+		<img src="picture/abc218c_2.jpg">
+		<p>(かなり汚い実装になってしまった...)</p>
+		<br>
+		<h1>D - Rectangles</h1>
+		<p>
+			点を2個選べば長方形が求まる + 4≤N≤2000 で明らかにnC2の計算量が通るように調整されてる　というところまでは分かったのですが、肝心の2点を選ぶ実装がうまくいかずに撃沈してしまいました。
+		</p>
+		<img src="picture/abc218_ex.png">
+		<p>
+			まず、任意の2点P, Qについて、<strong>QがPの右上に位置している</strong>(すなわち上の図でa < cかつb < d)時のみ判定を行います。こうすることで、同じ長方形をダブってカウントする事を避けられます。
+		</p>
+		<p>
+			具体的な実装方法は、
+		</p>
+		<p>
+			全ての点をpairの配列でもってソートしておく→任意の2点P(a, b), Q(c, d)について(a > cまたはb > dのときはcontinue)、(a, d)と(c, b)の2点が存在しているかを二分探索によって求め、存在していたら答えを1増やす
+		</p>
+		<p>
+			という感じです。計算量はO(N^2logN)になります。
+		</p>
+		<img src="picture/abc218d.jpg">
+		<p>
+			D問題にしてはかなり実装が軽めな気がします。
+		</p>
+		<p>
+			これ競プロあるあるだと思うんですけど、自分が解けなかった問題の実装が軽めだとちょっと悔しくなりません?
+		</p>
+		<br><br>
+		<hr>
+		<p>
+			今回D問題ができなかったのは典型の知識というより自分の考察力のなさだと思うので、その辺も鍛えていきたいです(どうやって?)
+		</p>
+		<p>
+			次こそは<span style="color:green">緑</span> に...
+		</p>
+	</div>
+	<br><br>
+</body>
+
+</html>
