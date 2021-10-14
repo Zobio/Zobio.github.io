@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+
+<html lang="ja">
+
+<head>
+	<meta charset="UTF-8">
+	<title>ABC222Dを階段DPに帰着させて考えてみる</title>
+	<link rel="icon" href="https://zobio.github.io/test.ico">
+</head>
+
+<header>
+	<a href="https://zobio.github.io"> <img src="https://zobio.github.io/logo.jpg" width="20%" height="20%"> </a>
+</header>
+
+<style>
+	.main img{
+		width : 40%;
+		height : 40%;
+	}
+</style>
+
+<body>
+	<div class="title">
+		<h3>2021/10/14</h3>
+		<h1>ABC222-Dを階段DPに帰着させて考えてみる</h1>
+	</div>
+	<hr>
+	<div class="main">
+		<h3>
+			<a href="https://atcoder.jp/contests/abc222/tasks/abc222_d">問題のリンク</a>
+		</h3>
+		<p>
+			ABC222-Dの解説を読んでも中々理解できなかったのですが、実は階段DP(<a href="https://atcoder.jp/contests/abc129/tasks/abc129_c">これ</a>みたいな問題)の類題であると考えるとスムーズに理解ができました。
+		</p>
+		<p>
+			まず、問題文を言い換えます。
+		</p>
+		<p>
+			高橋君は階段を作ることにした。しかし以下の2つのルールを守って作らなければならない。
+		</p>
+		<ul>
+			<li>i段目の階段の高さをhiとすると、ai &lt;= hi &lt;= bi</li>
+			<li>階段は各段について広義単調増加になっていなければならない</li>
+		</ul>
+		<p>
+			この時、階段の作り方は何通りあるか?(入力、制約等は元の問題と一緒)
+		</p>
+		<p>
+			ここで、以下のようにDPを定義します。
+		</p>
+		<strong>
+			dp[i][j] ... 1段目からi段目までで題意を満たすような階段が出来ていて、i段目の高さがjであるような階段は何通りあるか?
+		</strong>
+		<p>
+			dpの初期値はdp[0][0]のみ1、それ以外0です。dp[0][0]=1の意味を頑張って言語化すると、「階段が0段の時高さはもちろん0なので1通りある」みたいな感じです。
+		</p>
+		<br>
+		<img src="picture/abc222d_stairs_1.jpg">
+		<p>
+			入力例1をこの考え方に適用して図式化したものが上の画像です。最終段(2段目)の総計の5が答えになります。
+		</p>
+		<p>
+			この図をよく見ると、まずk段目のdpは、<strong>k-1段目のみ</strong>が影響している事がわかります。
+		</p>
+		<p>
+			また、dp[2][2]とdp[2][3]が同じ場所から値をとってきて同じ2になっていることから、どうやらdpに影響するのは1個前の階段の<strong>今の高さよりも低いDPの総計</strong>であることが分かります。
+		</p>
+		<p>
+			よって、漸化式は以下のようになることが分かると思います。
+		</p>
+		<img src="picture/abc222d_stairs_3.jpg">
+		<p>
+			もう少し複雑な入力について考えてみます。
+		</p>
+		<img src="picture/abc222d_stairs_2.jpg">
+		<p>
+			(入力)
+		</p>
+		<p>
+			N = 4, a = {1, 1, 2, 1}, a = {2, 3, 4, 5}
+		</p>
+		<p>
+			4段目の高さ0のdp(dp[4][0])の値が0になっているところからも、この考え方で元の問題の条件である広義単調増加を満たしていることがわかります。
+		</p>
+		<p>
+			以上です。実装方法については累積和、もしくはそれっぽいものを利用しないとTLEになってしまいます。
+		</p>
+		<p>
+			(<a href="https://atcoder.jp/contests/abc222/submissions/26558465">提出したコード</a>)
+		</p>
+	</div>
+	<br><br>
+</body>
+
+</html>
