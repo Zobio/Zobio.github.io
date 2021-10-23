@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+
+<html lang="ja">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Zobio's blog - 真偽値DPの更新</title>
+	<link rel="icon" href="https://zobio.github.io/test.ico">
+</head>
+
+<header>
+	<a href="https://zobio.github.io"> <img src="https://zobio.github.io/logo.jpg" width="20%" height="20%"> </a>
+</header>
+
+<body>
+	<div class="title">
+		<h3>2021/10/23</h3>
+		<h1>範囲for文のautoとauto&の使い分け</h1>
+	</div>
+	<hr>
+	<div class="main">
+		<p>
+			競プロにおける範囲for文(autoとauto&)の重要な違いは以下の通りです。
+		</p>
+		<p>
+			auto ... 配列等の<strong>コピーを生成して</strong>ループを回す
+		</p>
+		<p>
+			auto& ... 配列等を<strong>参照して</strong>ループを回す
+		</p>
+		<p>
+			そのため、以下のような使い方をすると両者に違いが出ます。
+		</p>
+		<img src="picture/for_auto_1.jpg"><br>
+		<img src="picture/for_auto_2.jpg">
+		<p>
+			よって、以下のように使い分けるのが適切だと考えます。
+		</p>
+		<p>
+			auto& ... 基本的にはこっちを使う
+		</p>
+		<p>
+			auto ... 配列等の要素を使って何らかの操作をしたいが、元の値は保持しておきたいとき
+		</p>
+		<br>
+		<p>
+			このような使い分けにするとautoの方はかなり出番が少ないと思うので、範囲for文のマクロを組む時にはauto&で定義するほうが良いと思います。(もちろん両パターン作ってもいいが)
+		</p>
+		<p>
+			(auto& の"&"は参照渡しの際の"&"と同じ意味です)
+		</p>
+		<br><br>
+	</div>
+</body>
+
+</html>
