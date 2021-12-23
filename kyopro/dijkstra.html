@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+
+<html lang="ja">
+
+<head>
+	<meta charset="UTF-8">
+	<title>ダイクストラ法</title>
+	<link rel="icon" href="https://zobio.github.io/test.ico">
+</head>
+
+<header>
+	<a href="https://zobio.github.io"> <img src="https://zobio.github.io/logo.jpg" width="20%" height="20%"> </a>
+</header>
+
+<style>
+	.main img {
+		width: 40%;
+		height: 40%;
+	}
+</style>
+
+<body>
+	<div class="title">
+		<h3>2021/12/23</h3>
+		<h1>ダイクストラ法</h1>
+	</div>
+	<hr>
+	<div class="main">
+		<h1>概要</h1>
+		<ul>
+			<li>グラフ上における最短経路を求める。</li>
+			<li>priority_queueを使い、「距離が近い」ところから最短距離を確定させていく(後述)</li>
+			<li>計算量はO(|E|log|V|)</li>
+			<li>ベルマンフォード法に比べて計算量が少ないが、負の辺を扱えない</li>
+			<li>ワーシャルフロイド法に計算量が少ないが、実装が比較的重い</li>
+		</ul>
+		<br>
+		<h1>使う道具</h1>
+		<ul>
+			<li>隣接リスト vector&lt;vector&lt;pair&lt;ll, ll&gt;&gt;&gt; g</li>
+			<p>({辺, コスト}のように使う)</p>
+			<li>距離を格納する配列 vector&lt;ll&gt; dis</li>
+			<li>チェックする頂点を格納する優先度付きキュー priority_queue&lt;pair&lt;ll, ll&gt;, vector&lt;pair&lt;ll, ll&gt;&gt;, greater&lt;pair&lt;ll, ll&gt;&gt;&gt; que</li>
+			<p>(コストの小さい順にソートしたいので、{コスト, 頂点}のように使う)</p>
+		</ul>
+		<br>
+		<h1>概要</h1>
+		<p>
+			dis[初期地点]のみを0、それ以外をINFにする。
+		</p>
+		<p>
+			まず初期地点をqueに入れて、gをもとに初期地点の周りの頂点のdisを更新していく。
+		</p>
+		<p>
+			それと同時に初期地点の周りの頂点もqueに入れていき、同じようにdisを更新していく。
+		</p>
+		<br>
+		<h1><a href="dijkstra.cpp">実装例</a></h1>
+		<img src="picture/dijkstra_jissou1.jpg"><br>
+		<img src="picture/dijkstra_jissou2.jpg">
+	</div>
+	<br><br>
+</body>
+
+</html>
