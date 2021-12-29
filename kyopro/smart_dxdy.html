@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+
+<html lang="ja">
+
+<head>
+	<meta charset="UTF-8">
+	<title>グリッド問題における4方向のベクトルのスマートな列挙</title>
+	<link rel="icon" href="https://zobio.github.io/test.ico">
+</head>
+
+<header>
+	<a href="https://zobio.github.io"> <img src="https://zobio.github.io/logo.jpg" width="20%" height="20%"> </a>
+</header>
+
+<style>
+	.main img {
+		width: 40%;
+		height: 40%;
+	}
+</style>
+
+<body>
+	<div class="title">
+		<h3>2021/12/30</h3>
+		<h1>グリッド問題における4方向のベクトルのスマートな列挙</h1>
+	</div>
+	<hr>
+	<div class="main">
+		<h3>(普通の実装)</h3>
+		<p>
+			vector&lt;long long&gt; dx = {1, 0, -1, 0};
+		</p>
+		<p>
+			vector&lt;long long&gt; dy = {0, 1, 0, -1};
+		</p>
+		<p>
+			rep(i, 4) cout &lt;&lt; dx[i] &lt;&lt; " " &lt;&lt; dy[i] &lt;&lt; endl;
+		</p>
+		<p>(出力)</p>
+		<p>1 0</p>
+		<p>0 1</p>
+		<p>-1 0</p>
+		<p>0 -1</p>
+		<br>
+		<p>
+			この操作は、以下のように書き換えることができます。
+		</p>
+		<h3>(スマートな実装)</h3>
+		<p>
+			vector&lt;long long&gt; delta = {1, 0, -1, 0};
+		</p>
+		<p>
+			rep(i, 4) cout &lt;&lt; delta[i] &lt;&lt; " " &lt;&lt; delta[i ^ 1] &lt;&lt; endl;
+		</p>
+		<p>(出力)</p>
+		<p>1 0</p>
+		<p>0 1</p>
+		<p>-1 0</p>
+		<p>0 -1</p>
+		<br>
+		<p>書き方オシャレだ。</p>
+		<br><br><br>
+	</div>
+	<br><br>
+</body>
+
+</html>
