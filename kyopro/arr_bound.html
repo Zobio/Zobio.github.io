@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+
+<html lang="ja">
+
+<head>
+	<meta charset="UTF-8">
+	<title>配列内のある値以上、以下、より大きい、未満の個数</title>
+	<link rel="icon" href="https://zobio.github.io/test.ico">
+</head>
+
+<header>
+	<a href="https://zobio.github.io"> <img src="https://zobio.github.io/logo.jpg" width="20%" height="20%"> </a>
+</header>
+
+<style>
+	.main img{
+		width : 40%;
+		height : 40%;
+	}
+</style>
+
+<body>
+	<div class="title">
+		<h3>2022/10/05</h3>
+		<h1>配列内のある値以上、より大きい、以下、未満の個数</h1>
+	</div>
+	<hr>
+	<div class="main">
+		<p>探索する値をiとする。</p>
+		<p>i以上</p>
+		<p>v.end() - lower_bound(all(v), i) </p>
+		<br>
+		<p>iより大きい</p>
+		<p>v.end() - upper_bound(all(v), i) </p>
+		<br>
+		<p>i以下</p>
+		<p>lower_bound(all(v), i + 1) - v.begin() </p>
+		<br>
+		<p>i未満</p>
+		<p>lower_bound(all(v), i) - v.begin() </p>
+		<br>
+		<img src="picture/arr_bound_1.jpg"><br>
+
+		<img src="picture/arr_bound_2.jpg" style="width: 25%; height: 25%;">
+		<br><br>
+	</div>
+	<br><br>
+</body>
+
+</html>
